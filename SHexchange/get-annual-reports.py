@@ -5,8 +5,8 @@ from copy import deepcopy
 
 URL_SSE = "http://www.sse.com.cn/disclosure/listedinfo/announcement/"
 # 股票
-# URL_SSE_STOCK = "https://raw.githubusercontent.com/faylearn/down-reports/master/SHexchange/sichuan-list.js"
-URL_SSE_STOCK = "http://www.sse.com.cn/js/common/ssesuggestdata.js"
+URL_SSE_STOCK = "/sichuan-list.js"
+#URL_SSE_STOCK = "http://www.sse.com.cn/js/common/ssesuggestdata.js"
 
 # 基金
 #URL_SSE_FUND = "http://www.sse.com.cn/js/common/ssesuggestfunddata.js"
