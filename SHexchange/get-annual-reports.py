@@ -5,13 +5,15 @@ from copy import deepcopy
 
 URL_SSE = "http://www.sse.com.cn/disclosure/listedinfo/announcement/"
 # 股票
+# URL_SSE_STOCK = "https://raw.githubusercontent.com/faylearn/down-reports/master/SHexchange/sichuan-list.js"
 URL_SSE_STOCK = "http://www.sse.com.cn/js/common/ssesuggestdata.js"
+
 # 基金
-URL_SSE_FUND = "http://www.sse.com.cn/js/common/ssesuggestfunddata.js"
+#URL_SSE_FUND = "http://www.sse.com.cn/js/common/ssesuggestfunddata.js"
 # E债券
-URL_SSE_EBOND = "http://www.sse.com.cn/js/common/ssesuggestEbonddata.js"
+#URL_SSE_EBOND = "http://www.sse.com.cn/js/common/ssesuggestEbonddata.js"
 # T债券
-URL_SSE_TBOND = "http://www.sse.com.cn/js/common/ssesuggestTbonddata.js"
+#URL_SSE_TBOND = "http://www.sse.com.cn/js/common/ssesuggestTbonddata.js"
 # 查询
 URL_QUERY_COMPANY = "http://query.sse.com.cn/security/stock/queryCompanyBulletin.do"
 
@@ -19,26 +21,26 @@ URL_PDF = "http://static.sse.com.cn"
 
 # 报告类型
 REPORT_TYPE = {
-    '全部': ('ALL', ''),
-    '定期公告': ('ALL', 'DQBG'),
+#    '全部': ('ALL', ''),
+#    '定期公告': ('ALL', 'DQBG'),
     '年报': ('YEARLY', 'DQBG'),
-    '第一季度季报': ('QUATER1', 'DQBG'),
-    '半年报': ('QUATER2', 'DQBG'),
-    '第三季度季报': ('QUATER3', 'DQBG'),
-    '临时公告': ('ALL', 'LSGG'),
-    '上市公司章程': ('SHGSZC', 'LSGG'),
-    '发行上市公告': ('FXSSGG', 'LSGG'),
-    '公司治理': ('GSZL', 'LSGG'),
-    '股东大会会议': ('GDDH', 'LSGG'),
-    'IPO公司公告': ('IPOGG', 'LSGG'),
-    '其他': ('QT', 'LSGG'),
+#    '第一季度季报': ('QUATER1', 'DQBG'),
+#    '半年报': ('QUATER2', 'DQBG'),
+#    '第三季度季报': ('QUATER3', 'DQBG'),
+#    '临时公告': ('ALL', 'LSGG'),
+#    '上市公司章程': ('SHGSZC', 'LSGG'),
+#    '发行上市公告': ('FXSSGG', 'LSGG'),
+#    '公司治理': ('GSZL', 'LSGG'),
+#    '股东大会会议': ('GDDH', 'LSGG'),
+#    'IPO公司公告': ('IPOGG', 'LSGG'),
+#    '其他': ('QT', 'LSGG'),
 }
 
 # 证券类型
 SECURITY_TYPE = {
-    '全部': '0101,120100,020100,020200,120200',
+#'全部': '0101,120100,020100,020200,120200',
     '主板': '0101',
-    '科创板': '120100,020100,020200,120200',
+#'科创板': '120100,020100,020200,120200',
 }
 
 HEADER = {
@@ -52,11 +54,11 @@ URL_PARAM = {
     'productId': '600000',
     # 关键字
     'keyWord': '',
-    'securityType': SECURITY_TYPE['全部'],
+    'securityType': SECURITY_TYPE['主板'],
     'reportType2': 'DQBG',
     'reportType': 'YEARLY',
-    'beginDate': '2016-07-17',
-    'endDate': '2019-07-17',
+    'beginDate': '2020-01-01',
+    'endDate': '2020-06-29',
 }
 
 
@@ -74,7 +76,7 @@ def get_all_codes(url):
     return code, name, pinyin
 
 
-def get_pdf_url(code, begin_date, end_date, security_type='全部', report_type='年报'):
+def get_pdf_url(code, begin_date, end_date, security_type='主板', report_type='年报'):
     url_param = deepcopy(URL_PARAM)
     url_param['productId'] = code
     url_param['securityType'] = SECURITY_TYPE[security_type]

@@ -3,7 +3,6 @@ import json
 import math
 import os
 import sys
-from main import ThunderDownload
 
 curPath = os.path.abspath(os.path.dirname(__file__))
 rootPath = os.path.split(curPath)[0]
