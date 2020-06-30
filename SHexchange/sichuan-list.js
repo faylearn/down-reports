@@ -1,4 +1,5 @@
 //staticDate=2020-06-24 18:00:01 
+// copy from SSE: http://www.sse.com.cn/js/common/ssesuggestdata.js
 
 function get_data(){
 var _t = new Array();

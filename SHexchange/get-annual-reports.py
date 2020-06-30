@@ -5,7 +5,7 @@ from copy import deepcopy
 
 URL_SSE = "http://www.sse.com.cn/disclosure/listedinfo/announcement/"
 # 股票
-URL_SSE_STOCK = "/sichuan-list.js"
+URL_SSE_STOCK = "https://raw.githubusercontent.com/faylearn/down-reports/master/SHexchange/sichuan-list.js"
 #URL_SSE_STOCK = "http://www.sse.com.cn/js/common/ssesuggestdata.js"
 
 # 基金
@@ -57,7 +57,7 @@ URL_PARAM = {
     'securityType': SECURITY_TYPE['主板'],
     'reportType2': 'DQBG',
     'reportType': 'YEARLY',
-    'beginDate': '2020-01-01',
+    'beginDate': '2020-03-01',
     'endDate': '2020-06-29',
 }
 
@@ -71,7 +71,7 @@ def get_all_codes(url):
         item = i.split('"')
         code.append(item[0])
         name.append(item[2])
-        pinyin.append(item[4])
+    #   pinyin.append(item[4])   #由于自定义 URL_SSE_STOCK 中没有这一字符串，因而注释掉
     # print(code)
     return code, name, pinyin
 
@@ -92,9 +92,9 @@ def save_pdf(code, pdf_title_urls, path='./'):
     file_path = os.path.join(path, code)
     if not os.path.isdir(file_path):
         os.makedirs(file_path)
-    for url, r_type, year, date in pdf_title_urls:
+    for url,r_type, year, date in pdf_title_urls:
         date = ''.join(date.split('-'))
-        file_name = '_'.join([code, r_type, year, date]) + '.pdf'
+        file_name = '_'.join([code, name,r_type, year, date]) + '.pdf'
         file_full_name = os.path.join(file_path, file_name)
         # print(file_full_name)
         rs = requests.get(url, stream=True)
@@ -103,14 +103,15 @@ def save_pdf(code, pdf_title_urls, path='./'):
                 if chunk:
                     fp.write(chunk)
 
-
+# 设定下载年份、月份开始
 def download_report(code):
     month_day = time.strftime('-%m-%d', time.localtime())
     year = int(time.strftime('%Y', time.localtime()))
     while True:
-        year_3 = year - 3
+        year_3 = year - 1  
         begin_date = str(year_3) + month_day
         end_date = str(year) + month_day
+        #设定下载年份、月份结束
         pdf_urls = get_pdf_url(code, begin_date, end_date)
         # for i in title_urls:
         #     print(i)
@@ -125,9 +126,9 @@ def download_report(code):
                 print(f'[{code}] 下载失败')
         else:
             print(f'[{code}] 完毕')
-            break
-        year = year_3
-        if year < 1900:
+           # break
+        year = year-3
+        if year < year_3:
             break
 
 
