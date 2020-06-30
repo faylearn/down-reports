@@ -94,7 +94,7 @@ def save_pdf(code, pdf_title_urls, path='./'):
         os.makedirs(file_path)
     for url,r_type, year, date in pdf_title_urls:
         date = ''.join(date.split('-'))
-        file_name = '_'.join([code, name,r_type, year, date]) + '.pdf'
+        file_name = '_'.join([code,r_type, year, date]) + '.pdf'
         file_full_name = os.path.join(file_path, file_name)
         # print(file_full_name)
         rs = requests.get(url, stream=True)
@@ -108,7 +108,7 @@ def download_report(code):
     month_day = time.strftime('-%m-%d', time.localtime())
     year = int(time.strftime('%Y', time.localtime()))
     while True:
-        year_3 = year - 1  
+        year_3 = year - 1  #间隔一年，即当前时间的上一年。要过去两年的话改成 year - 2
         begin_date = str(year_3) + month_day
         end_date = str(year) + month_day
         #设定下载年份、月份结束
